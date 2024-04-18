@@ -1,6 +1,61 @@
 # Experiments
 A streamlit application that helps calculate relevant statistics before, during, and after an experiment is conducted.
 
+## Statistical Significance Test Tool
+
+This tool is designed to evaluate the statistical significance of differences in either proportions or means, suitable for one-tailed or two-tailed tests. It supports decision-making in various fields such as marketing, clinical trials, or education by providing a clear indication of whether observed differences in data are statistically significant.
+
+### Usage
+
+#### Proportion Test
+For experiments involving rates or percentages:
+```bash
+python sig_test.py --test_type proportion --tail two --test_value 0.507 --control_value 0.4728 --n_test 25000 --n_control 25000 --confidence 0.95
+```
+
+#### Mean Test
+
+For experiments involving continuous outcomes:
+
+```bash
+python sig_test.py --test_type mean --tail one --test_value 50 --control_value 45 --std_test 10 --std_control 10 --n_test 25000 --n_control 25000 --confidence 0.90
+```
+
+### Arguments
+
+- `--test_type`: Specify the type of data: 'proportion' for rates or percentages, 'mean' for continuous outcomes.
+- `--tail`: Specify the type of test: 'one' for a one-tailed test or 'two' for a two-tailed test.
+- `--test_value`: Value observed in the test group (proportion or mean).
+- `--control_value`: Value observed in the control group (proportion or mean).
+- `--std_test`: Standard deviation of the test group (required for mean type tests).
+- `--std_control`: Standard deviation of the control group (required for mean type tests).
+- `--n_test`: Sample size for the test group.
+- `--n_control`: Sample size for the control group.
+- `--confidence`: Confidence level for the test, typically set at 0.95.
+
+### Results
+
+After running the tool, it will print a detailed report, including:
+
+```bash
+Results:
+----------------------------
+Test Type: Proportion Test
+Tail Type: Two-tailed
+Test Group Value: 0.507
+Control Group Value: 0.4728
+Test Group Size: 25000
+Control Group Size: 25000
+Confidence Level: 0.95
+Z-Score: 2.556
+P-Value: 0.0107
+Significant: Yes
+
+```
+
+
+
+
 
 ## Sample Size Calculator
 
