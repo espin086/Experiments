@@ -5,6 +5,11 @@ A streamlit application that helps calculate relevant statistics before, during,
 
 You can find the web application for this tool here: [testandlearn](https://testandlearn.streamlit.app/)
 
+![alt text](images/ui_sample_size.png)
+
+![alt text](images/ui_stat_sig.png)
+
+
 # Command Line Tools
 
 ## Statistical Significance Test Tool
