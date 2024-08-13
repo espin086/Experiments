@@ -1,22 +1,17 @@
-# Experiments
-A streamlit application that helps calculate relevant statistics before, during, and after an experiment is conducted.
+# Experiments 🧪
+A streamlit application that helps calculate relevant statistics before, during, and after an experiment is conducted. 
 
-# Web Application
+# Web Application 🌐
 
 You can find the web application for this tool here: [testandlearn](https://testandlearn.streamlit.app/)
 
-![alt text](images/ui_sample_size.png)
+## Command Line Tools 🛠
 
-![alt text](images/ui_stat_sig.png)
-
-
-# Command Line Tools
-
-## Statistical Significance Test Tool
+## Statistical Significance Test Tool 📊
 
 This tool is designed to evaluate the statistical significance of differences in either proportions or means, suitable for one-tailed or two-tailed tests. It supports decision-making in various fields such as marketing, clinical trials, or education by providing a clear indication of whether observed differences in data are statistically significant.
 
-### Usage
+### Usage 📝
 
 #### Proportion Test
 For experiments involving rates or percentages:
@@ -32,7 +27,7 @@ For experiments involving continuous outcomes:
 python sig_test.py --test_type mean --tail one --test_value 50 --control_value 45 --std_test 10 --std_control 10 --n_test 25000 --n_control 25000 --confidence 0.90
 ```
 
-### Arguments
+### Arguments 📚
 
 - `--test_type`: Specify the type of data: 'proportion' for rates or percentages, 'mean' for continuous outcomes.
 - `--tail`: Specify the type of test: 'one' for a one-tailed test or 'two' for a two-tailed test.
@@ -44,7 +39,7 @@ python sig_test.py --test_type mean --tail one --test_value 50 --control_value 4
 - `--n_control`: Sample size for the control group.
 - `--confidence`: Confidence level for the test, typically set at 0.95.
 
-### Results
+### Results 📈
 
 After running the tool, it will print a detailed report, including:
 
@@ -68,11 +63,11 @@ Significant: Yes
 
 
 
-## Sample Size Calculator
+## Sample Size Calculator 🧮
 
 This tool is designed to calculate the necessary sample size for a statistical experiment to detect differences in either proportions or means, suitable for one-tailed or two-tailed tests. It supports decision-making in various fields such as marketing, clinical trials, or education.
 
-### Usage
+### Usage 📝
 
 #### Proportion Type
 For experiments involving rates or percentages:
@@ -86,7 +81,7 @@ For experiments involving continuous outcomes:
 python samplesize.py --type mean --tail one --delta 5 --sigma 20 --alpha 0.05 --power 0.8 --split_ratio 0.5
 ```
 
-### Arguments
+### Arguments 📚
 - `--type`: Specify the type of data: 'proportion' for rates or percentages, 'mean' for continuous outcomes.
 - `--tail`: Specify the type of test: 'one' for a one-tailed test or 'two' for a two-tailed test.
 - `--delta`: The desired difference in means for 'mean' type.
@@ -97,7 +92,7 @@ python samplesize.py --type mean --tail one --delta 5 --sigma 20 --alpha 0.05 --
 - `--power`: Statistical power.
 - `--split_ratio`: The ratio of the sample size allocated to the control group versus the experimental group.
 
-### Report
+### Report 📄
 After running the tool, a detailed report will be generated including:
 ```bash
 Sample Size Calculation Report
@@ -115,3 +110,5 @@ Control Group Sample Size: 1366
 Experimental Group Sample Size: 1366
 
 ```
+
+🔍 **Important**: Make sure to input the correct values for your experiment. The results of the statistical tests and sample size calculations are highly dependent on the input parameters.
