@@ -5,6 +5,8 @@ A streamlit application that helps calculate relevant statistics before, during,
 
 You can find the web application for this tool here: [testandlearn](https://testandlearn.streamlit.app/)
 
+# Command Line Tools
+
 ## Statistical Significance Test Tool
 
 This tool is designed to evaluate the statistical significance of differences in either proportions or means, suitable for one-tailed or two-tailed tests. It supports decision-making in various fields such as marketing, clinical trials, or education by providing a clear indication of whether observed differences in data are statistically significant.
