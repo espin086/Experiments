@@ -1,10 +1,11 @@
 import streamlit as st
 from sig_test import calculate_z_score, calculate_p_value
-from samplesize import (
+from sample_size import (
     calculate_sample_size_for_proportions,
     calculate_sample_size_for_means,
 )
 import numpy as np
+import math
 
 
 def main():
@@ -17,20 +18,36 @@ def main():
 
         st.sidebar.header("Test Configuration")
 
-        test_type = st.sidebar.selectbox("Select Test Type", ["proportion", "mean"])
-        tail_type = st.sidebar.selectbox("Select Tail Type", ["one", "two"])
-        test_value = st.sidebar.number_input("Test Group Value", value=0.0)
-        control_value = st.sidebar.number_input("Control Group Value", value=0.0)
-        n_test = st.sidebar.number_input("Test Group Size", value=0)
-        n_control = st.sidebar.number_input("Control Group Size", value=0)
-        confidence = st.sidebar.slider("Confidence Level", 0.90, 0.99, 0.95)
+        test_type = st.sidebar.selectbox(
+            "Select Test Type", ["proportion", "mean"], key="test_type"
+        )
+        tail_type = st.sidebar.selectbox(
+            "Select Tail Type", ["one", "two"], key="tail_type"
+        )
+        test_value = st.sidebar.number_input(
+            "Test Group Value", value=0.0, key="test_value"
+        )
+        control_value = st.sidebar.number_input(
+            "Control Group Value", value=0.0, key="control_value"
+        )
+        n_test = st.sidebar.number_input("Test Group Size", value=0, key="n_test")
+        n_control = st.sidebar.number_input(
+            "Control Group Size", value=0, key="n_control"
+        )
+        confidence = st.sidebar.slider(
+            "Confidence Level", 0.90, 0.99, 0.95, key="confidence"
+        )
 
         std_test = std_control = None
         if test_type == "mean":
-            std_test = st.sidebar.number_input("Test Group Std Dev", value=0.0)
-            std_control = st.sidebar.number_input("Control Group Std Dev", value=0.0)
+            std_test = st.sidebar.number_input(
+                "Test Group Std Dev", value=0.0, key="std_test"
+            )
+            std_control = st.sidebar.number_input(
+                "Control Group Std Dev", value=0.0, key="std_control"
+            )
 
-        if st.sidebar.button("Calculate"):
+        if st.sidebar.button("Calculate", key="calculate_significance"):
             if test_type == "mean" and (std_test is None or std_control is None):
                 st.error("Standard deviations must be provided for mean type tests.")
             else:
@@ -67,20 +84,30 @@ def main():
     with tab2:
         st.header("Sample Size Calculator")
 
-        sample_type = st.selectbox("Select Sample Type", ["proportion", "mean"])
-        tail_type = st.selectbox("Select Tail Type", ["one", "two"])
-        alpha = st.number_input("Significance Level (alpha)", value=0.05)
-        power = st.number_input("Statistical Power", value=0.8)
+        sample_type = st.selectbox(
+            "Select Sample Type", ["proportion", "mean"], key="sample_type"
+        )
+        tail_type = st.selectbox(
+            "Select Tail Type", ["one", "two"], key="sample_tail_type"
+        )
+        alpha = st.number_input("Significance Level (alpha)", value=0.05, key="alpha")
+        power = st.number_input("Statistical Power", value=0.8, key="power")
         split_ratio = st.number_input(
-            "Control Group Ratio", value=0.5, min_value=0.0, max_value=1.0
+            "Control Group Ratio",
+            value=0.5,
+            min_value=0.0,
+            max_value=1.0,
+            key="split_ratio",
         )
 
         if sample_type == "proportion":
-            baseline = st.number_input("Baseline Proportion", value=0.0)
+            baseline = st.number_input("Baseline Proportion", value=0.0, key="baseline")
             effect_size = st.number_input(
-                "Expected Proportion in Test Group", value=0.0
+                "Expected Proportion in Test Group", value=0.0, key="effect_size"
             )
-            if st.button("Calculate Sample Size"):
+            if st.button(
+                "Calculate Sample Size", key="calculate_sample_size_proportion"
+            ):
                 sample_size = calculate_sample_size_for_proportions(
                     baseline, effect_size, alpha, power, split_ratio, tail_type
                 )
@@ -94,9 +121,13 @@ def main():
                 )
 
         elif sample_type == "mean":
-            delta = st.number_input("Desired Difference in Means (delta)", value=0.0)
-            sigma = st.number_input("Standard Deviation (sigma)", value=0.0)
-            if st.button("Calculate Sample Size"):
+            delta = st.number_input(
+                "Desired Difference in Means (delta)", value=0.0, key="delta"
+            )
+            sigma = st.number_input(
+                "Standard Deviation (sigma)", value=0.0, key="sigma"
+            )
+            if st.button("Calculate Sample Size", key="calculate_sample_size_mean"):
                 sample_size = calculate_sample_size_for_means(
                     delta, sigma, alpha, power, split_ratio, tail_type
                 )
