@@ -16,38 +16,26 @@ def main():
     with tab1:
         st.header("Statistical Significance Test Tool")
 
-        st.sidebar.header("Test Configuration")
-
-        test_type = st.sidebar.selectbox(
+        test_type = st.selectbox(
             "Select Test Type", ["proportion", "mean"], key="test_type"
         )
-        tail_type = st.sidebar.selectbox(
-            "Select Tail Type", ["one", "two"], key="tail_type"
-        )
-        test_value = st.sidebar.number_input(
-            "Test Group Value", value=0.0, key="test_value"
-        )
-        control_value = st.sidebar.number_input(
+        tail_type = st.selectbox("Select Tail Type", ["one", "two"], key="tail_type")
+        test_value = st.number_input("Test Group Value", value=0.0, key="test_value")
+        control_value = st.number_input(
             "Control Group Value", value=0.0, key="control_value"
         )
-        n_test = st.sidebar.number_input("Test Group Size", value=0, key="n_test")
-        n_control = st.sidebar.number_input(
-            "Control Group Size", value=0, key="n_control"
-        )
-        confidence = st.sidebar.slider(
-            "Confidence Level", 0.90, 0.99, 0.95, key="confidence"
-        )
+        n_test = st.number_input("Test Group Size", value=0, key="n_test")
+        n_control = st.number_input("Control Group Size", value=0, key="n_control")
+        confidence = st.slider("Confidence Level", 0.90, 0.99, 0.95, key="confidence")
 
         std_test = std_control = None
         if test_type == "mean":
-            std_test = st.sidebar.number_input(
-                "Test Group Std Dev", value=0.0, key="std_test"
-            )
-            std_control = st.sidebar.number_input(
+            std_test = st.number_input("Test Group Std Dev", value=0.0, key="std_test")
+            std_control = st.number_input(
                 "Control Group Std Dev", value=0.0, key="std_control"
             )
 
-        if st.sidebar.button("Calculate", key="calculate_significance"):
+        if st.button("Calculate", key="calculate_significance"):
             if test_type == "mean" and (std_test is None or std_control is None):
                 st.error("Standard deviations must be provided for mean type tests.")
             else:
@@ -111,7 +99,7 @@ def main():
                 sample_size = calculate_sample_size_for_proportions(
                     baseline, effect_size, alpha, power, split_ratio, tail_type
                 )
-                st.write("**Sample Size Calculation Results**")
+                st.subheader("Sample Size Calculation Results")
                 st.write(f"Total Sample Size Required: {sample_size}")
                 st.write(
                     f"Control Group Sample Size: {math.ceil(sample_size * split_ratio)}"
@@ -131,7 +119,7 @@ def main():
                 sample_size = calculate_sample_size_for_means(
                     delta, sigma, alpha, power, split_ratio, tail_type
                 )
-                st.write("**Sample Size Calculation Results**")
+                st.subheader("Sample Size Calculation Results")
                 st.write(f"Total Sample Size Required: {sample_size}")
                 st.write(
                     f"Control Group Sample Size: {math.ceil(sample_size * split_ratio)}"
