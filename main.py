@@ -1,6 +1,6 @@
 import streamlit as st
 from sig_test import calculate_z_score, calculate_p_value
-from sample_size import (
+from samplesize import (
     calculate_sample_size_for_proportions,
     calculate_sample_size_for_means,
 )
