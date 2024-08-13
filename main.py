@@ -9,7 +9,7 @@ import math
 
 
 def main():
-    st.title("Statistical Tools")
+    st.title("Test and Learn Tools")
 
     tab1, tab2 = st.tabs(["Statistical Significance Test", "Sample Size Calculator"])
 
