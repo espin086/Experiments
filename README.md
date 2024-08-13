@@ -5,7 +5,45 @@ A streamlit application that helps calculate relevant statistics before, during,
 
 You can find the web application for this tool here: [testandlearn](https://testandlearn.streamlit.app/)
 
-## Command Line Tools 🛠
+# Command Line Tools 🛠
+
+## Installation
+To clone a repository, create a virtual environment, install the requirements, and launch the Streamlit application, follow these steps:
+
+1. Clone the repository using the following command:
+    ```bash
+    git clone https://github.com/espin086/Experiments.git
+    ```
+
+2. Change into the cloned repository directory:
+    ```bash
+    cd Experiments
+    ```
+
+3. Create a virtual environment using the following command:
+    ```bash
+    python -m venv .venv
+    ```
+
+4. Activate the virtual environment:
+    - For Windows:
+      ```bash
+      .venv\Scripts\activate
+      ```
+    - For macOS/Linux:
+      ```bash
+      source .venv/bin/activate
+      ```
+
+5. Install the required packages from the `requirements.txt` file:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+6. Launch the Streamlit application using the following command:
+    ```bash
+    streamlit run main.py
+    ```
 
 ## Statistical Significance Test Tool 📊
 
